@@ -5,21 +5,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { sidebarLinks } from "@/constants/index";
 
-interface NavbarProps {
-  type: string;
-  userName?: string;
-  userId?: string;
-  userImage?: string;
-}
-
 export default function Navbar({
   type,
   userName = "Aideloje Josiah",
   userId = "1234567890",
   userImage = "/placeholder.svg",
+  user,
 }: NavbarProps) {
   return (
-   
     <div className="flex h-16 items-center justify-between w-full ">
       {/* Left section */}
       <div>
@@ -38,7 +31,7 @@ export default function Navbar({
 
       {/* Center section */}
       <div className="flex flex-col items-end">
-        <p className="text-sm font-medium text-[#33B786] ">{userName}</p>
+        <p className="text-sm font-medium text-[#33B786] ">{user.name}</p>
         <p className="text-2xl text-muted-foreground font-bold text-black ">
           {userId}
         </p>
@@ -69,6 +62,5 @@ export default function Navbar({
         </Avatar>
       </div>
     </div>
-    
   );
 }

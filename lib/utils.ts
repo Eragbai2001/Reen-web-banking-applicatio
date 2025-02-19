@@ -6,21 +6,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function authFormSchema(type: string) {
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
-  const baseSchema = {
-    email: z.string().email({ message: "Invalid email address" }),
-    passWord: z.string().min(8, { message: "Password must be at least 8 characters long" }),
-  };
-
-  if (type === "register") {
-    return z.object({
-      ...baseSchema,
-      firstName: z.string().min(3, { message: "First name must be at least 3 characters long" }),
-    });
-  }
-
-
-
-  return z.object(baseSchema);
-}
+export const authFormSchema = (type: string) => {
+  return z.object({
+    firstName: type === "register" ? z.string().min(1) : z.optional(z.string()),
+    email: z.string().email(),
+    passWord: z.string().min(6),
+  });
+};

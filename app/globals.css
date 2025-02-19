@@ -80,7 +80,8 @@ body {
 .shadow-creditCard {
   --tw-shadow: 8px 10px 16px 0px rgba(0, 0, 0, 0.05);
   --tw-shadow-colored: 8px 10px 16px 0px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .Landing {
   background: #d4f3e7;
@@ -131,15 +132,15 @@ body {
   @apply flex flex-col justify-between gap-8;
 }
 
-.green{
-  @apply text-[#33B786]
+.green {
+  @apply text-[#33B786];
 }
 .sidebar {
-  @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-white items-start sm:p-4 xl:p-6 2xl:w-[355px] ;
+  @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between  bg-white pt-8 text-white items-start sm:p-4 xl:p-6 2xl:w-[355px]  max-md:hidden;
 }
 
 .sidebar-label {
-  @apply  font-semibold  max-xl:hidden text-[#555555];
+  @apply font-semibold  max-xl:hidden text-[#555555];
 }
 
 .sidebar-link {
@@ -147,13 +148,13 @@ body {
 }
 
 .footer {
-  @apply flex cursor-pointer items-center justify-between gap-2 py-6 text-[#555555] ;
+  @apply flex cursor-pointer items-center justify-between gap-2 py-6 text-[#555555];
 }
 
 .root-layout {
   @apply flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden;
 }
 
- .mobilenav-sheet {
-    @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
-  }
+.mobilenav-sheet {
+  @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+}
