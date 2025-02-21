@@ -56,10 +56,15 @@ const Authform = ({ type }: { type: string }) => {
           password: data.passWord,
         });
 
-        if (response) router.push("/dashboard");
+        if (response) {
+          // Set session cookie
+          document.cookie = `appwrite-session=${response.$id}; path=/;`;
+          router.push("/dashboard");
+        }
       }
     } catch (error) {
       console.error("Error:", error);
+      setErrorMessage(error.message || "An error occurred");
     } finally {
       setIsLoading(false);
     }
