@@ -47,7 +47,6 @@ const MobileNav = ({ user }: MobileNavProps) => {
               height={140}
               alt="Horizon logo"
             />
-            
           </Link>
           <div className="mobilenav-sheet">
             <SheetClose asChild>

@@ -1,6 +1,5 @@
 "use client";
 
-// filepath: /c:/Users/Joshua/Desktop/Reen Bank/components/Authform.tsx
 import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,7 +22,8 @@ const Authform = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
 
   const formSchema = authFormSchema(type);
-  const heightClass = type === "log-in" ? "h-96" : "h-[30rem]";
+  const baseHeightClass = type === "log-in" ? "h-[25rem]" : "h-[30rem]";
+  const heightClass = errorMessage ? "h-[35rem]" : baseHeightClass;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,22 +62,24 @@ const Authform = ({ type }: { type: string }) => {
           router.push("/dashboard");
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error:", error);
-      setErrorMessage(error.message || "An error occurred");
+      setErrorMessage(
+        error.response?.message || error.message || "An error occurred"
+      );
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <section className="auth-form">
-      <div className="flex flex-col">
+    <section className=" flex justify-between items-center min-h-screen w-full px-0 lg:px-0">
+      <div className=" hidden lg:flex flex-col ">
         {type === "log-in" ? <Login /> : <Register />}
       </div>
 
       <div
-        className={`bg-white rounded-lg p-3 md:p-9 text-[#33B786] text-2xl shadow-2xl flex flex-col gap-7 ${heightClass} w-[70%] max-w-md md:max-w-lg lg:max-w-xl`}
+        className={`bg-white rounded-lg p-3 text-[#33B786] text-2xl shadow-2xl flex flex-col gap-7 ${heightClass} w-[90%] sm:w-[80%] md:w-[70%] max-w-md mx-auto lg:mx-0`}
       >
         {type === "log-in" ? "Login" : "Register"}
 
@@ -89,8 +91,8 @@ const Authform = ({ type }: { type: string }) => {
               <CustomInput
                 control={form.control}
                 name="firstName"
-                label="Name"
-                placeholder="Enter Your name"
+                label="FirstName"
+                placeholder="Enter Your firstName"
                 icon={UserRound}
                 type={type}
               />
@@ -112,7 +114,11 @@ const Authform = ({ type }: { type: string }) => {
               type={type}
             />
 
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            {errorMessage && (
+              <div className={`w-[20rem]`}>
+                <p className="text-red-500 text-[15px]">{errorMessage}</p>
+              </div>
+            )}
 
             <Button type="submit" className="form-btn" disabled={isLoading}>
               {isLoading ? (

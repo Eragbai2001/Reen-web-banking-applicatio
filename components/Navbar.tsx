@@ -7,13 +7,11 @@ import { sidebarLinks } from "@/constants/index";
 
 export default function Navbar({
   type,
-  userName = "Aideloje Josiah",
   userId = "1234567890",
-  userImage = "/placeholder.svg",
   user,
 }: NavbarProps) {
   return (
-    <div className="flex h-16 items-center justify-between w-full ">
+    <div className="hidden md:flex h-16 items-center justify-around w-full  ">
       {/* Left section */}
       <div>
         {sidebarLinks.map(
@@ -21,7 +19,7 @@ export default function Navbar({
             type === item.label && (
               <h1
                 key={item.label}
-                className="text-xl font-semibold text-[#252525]"
+                className="text-xl font-semibold text-[#252525] "
               >
                 {item.label}
               </h1>
@@ -31,7 +29,11 @@ export default function Navbar({
 
       {/* Center section */}
       <div className="flex flex-col items-end">
-        <p className="text-sm font-medium text-[#33B786] ">{user.name}</p>
+        <p className="text-lg font-medium text-[#33B786] ">
+          {" "}
+          <span className="text-black">Hello&apos;</span>
+          {user.name}{" "}
+        </p>
         <p className="text-2xl text-muted-foreground font-bold text-black ">
           {userId}
         </p>
@@ -44,7 +46,7 @@ export default function Navbar({
           <Input
             type="search"
             placeholder="Search..."
-            className="w-full pl-8 border-none  shadow-none "
+            className="w-full pl-8 border-none shadow-none "
           />
         </div>
         <button className="rounded-full p-2 hover:bg-accent">
@@ -52,11 +54,14 @@ export default function Navbar({
           <span className="sr-only">Notifications</span>
         </button>
         <Avatar>
-          <AvatarImage src={userImage} alt={`${userName}'s avatar`} />
+          <AvatarImage
+            src={user.profileImage || "/placeholder.svg"}
+            alt={`${user.name}'s avatar`}
+          />
           <AvatarFallback>
-            {userName
+            {user.name
               .split(" ")
-              .map((n) => n[0])
+              .map((n: string) => n[0])
               .join("")}
           </AvatarFallback>
         </Avatar>

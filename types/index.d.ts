@@ -14,7 +14,7 @@ interface NavbarProps {
   userName?: string;
   userId?: string;
   userImage?: string;
-  user: User;
+  user?: user;
 }
 
 declare type User = {

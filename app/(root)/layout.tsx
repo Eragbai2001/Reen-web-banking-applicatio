@@ -3,6 +3,7 @@ import Image from "next/image";
 import MobileNav from "@/components/mobileNav";
 import { getLoggedInUser } from "@/lib/user.action";
 import { redirect } from "next/navigation";
+import ProfileInfo from "@/components/profileInfo";
 
 export default async function RootLayout({
   children,
@@ -16,7 +17,10 @@ export default async function RootLayout({
       <Sidebar user={loggedIn?.name || "Guest"} />
       <div className="flex size-full flex-col">
         <div className="root-layout">
-          <Image src="/logo.png" width={140} height={140} alt="menu icon" />
+          <div className="">
+            <ProfileInfo type="default" user={loggedIn || {}} />
+          </div>
+         
 
           <div>
             <MobileNav user={loggedIn} />

@@ -87,9 +87,6 @@ body {
   background: #d4f3e7;
 }
 
-.auth-form {
-  @apply grid md:grid-cols-2 min-h-screen  md:gap-7 items-center  gap-10  p-2 md:p-10;
-}
 
 .bg-image {
   background-image: url("/register (1).png");
@@ -140,7 +137,7 @@ body {
 }
 
 .sidebar-label {
-  @apply font-semibold  max-xl:hidden text-[#555555];
+  @apply font-semibold   text-[#555555];
 }
 
 .sidebar-link {

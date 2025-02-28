@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 import Navbar from "@/components/Navbar";
+import { getLoggedInUser } from "@/lib/user.action";
 
-const page = () => {
-  return (
-  <Navbar type="Account"/>
-  )
-}
+const page = async () => {
+  const loggedIn = await getLoggedInUser();
 
-export default page
+  return <Navbar type="Account" user={loggedIn || {}}  />;
+};
+
+export default page;

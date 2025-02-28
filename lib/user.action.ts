@@ -28,6 +28,7 @@ export const register = async (userData: SignUpParams) => {
     return parseStringify(newUserAccount);
   } catch (error) {
     console.error("Error", error);
+    throw error;
   }
 };
 export const login = async ({ email, password }: signInProps) => {
@@ -69,6 +70,6 @@ export const logoutAccount = async () => {
     cookies().delete("appwrite-session");
     await account.deleteSession("current");
   } catch (error) {
-    return null;
+    console.error("Error", error);
   }
 };
