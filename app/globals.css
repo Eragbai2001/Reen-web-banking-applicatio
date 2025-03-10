@@ -10,6 +10,19 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .border-bankGradient {
+    border-image-source: linear-gradient(to right, #33b786, #33b786);
+    border-image-slice: 1;
+  }
+
+  .bg-bank-gradient {
+    background-image: linear-gradient(to right, #33b786, #33b786);
+  }
+
+  .shadow-form {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 }
 
 @layer base {
@@ -87,7 +100,6 @@ body {
   background: #d4f3e7;
 }
 
-
 .bg-image {
   background-image: url("/register (1).png");
   background-size: cover;
@@ -154,4 +166,8 @@ body {
 
 .mobilenav-sheet {
   @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+}
+
+.plaidlink-primary {
+  @apply rounded-lg  bg-bank-gradient font-semibold text-white shadow-form;
 }

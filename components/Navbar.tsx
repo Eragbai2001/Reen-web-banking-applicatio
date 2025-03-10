@@ -31,7 +31,7 @@ export default function Navbar({
       <div className="flex flex-col items-end">
         <p className="text-lg font-medium text-[#33B786] ">
           {" "}
-          <span className="text-black">Hello&apos;</span>
+          <span className="text-black">Welcome,</span>
           {user.name}{" "}
         </p>
         <p className="text-2xl text-muted-foreground font-bold text-black ">

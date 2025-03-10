@@ -4,6 +4,7 @@ import MobileNav from "@/components/mobileNav";
 import { getLoggedInUser } from "@/lib/user.action";
 import { redirect } from "next/navigation";
 import ProfileInfo from "@/components/profileInfo";
+import BankAccountsPage from "@/components/bankAccount"
 
 export default async function RootLayout({
   children,
@@ -27,6 +28,7 @@ export default async function RootLayout({
           </div>
         </div>
         {children}
+      <BankAccountsPage/>
       </div>
     </main>
   );

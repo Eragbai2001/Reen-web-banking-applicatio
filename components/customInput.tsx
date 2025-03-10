@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormControl, FormField, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 import { authFormSchema } from "@/lib/utils";
+import { Eye, EyeOff } from "lucide-react"; // Import eye icons for password toggle
 
 type FormSchema = z.infer<ReturnType<typeof authFormSchema>>;
 
@@ -25,6 +25,17 @@ const CustomInput = ({
   icon,
   type,
 }: CustomInputProps) => {
+  // Add state to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Check if this is a password field
+  const isPasswordField = name === "password" ;
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <FormField
       control={control}
@@ -41,8 +52,11 @@ const CustomInput = ({
                   placeholder={placeholder}
                   className="input-class pr-10" // Add padding to the right to make space for the icon
                   {...field}
-                  type={name}
+                  value={typeof field.value === 'object' ? '' : field.value}
+                  // Set input type based on password field and visibility state
+                  type={isPasswordField ? (showPassword ? "text" : "password") : "text"}
                 />
+                {/* Main icon on the right */}
                 {icon &&
                   React.createElement(icon, {
                     className:
@@ -50,8 +64,22 @@ const CustomInput = ({
                     stroke: "currentColor", // Ensure it uses the current text color
                     color: "inherit", // Or set a specific color if needed
                   })}
-                { name === "passWord" && type === "log-in" && (
-                  <div className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-500 flex ">
+                
+                {/* Password visibility toggle button */}
+                {isPasswordField && (
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4"
+                    tabIndex={-1} // Prevent tab focus on this button
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                )}
+                
+                {/* Forgot password link (only show on login page for password field) */}
+                {name === "password" && type === "log-in" && (
+                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 text-gray-500 flex">
                     <div className="border-r border-gray-300 h-5 mr-2"></div>
                     <a
                       href="/forgot-password"
@@ -64,7 +92,7 @@ const CustomInput = ({
               </div>
             </FormControl>
 
-            <FormMessage className="form-message "></FormMessage>
+            <FormMessage className="form-message"></FormMessage>
           </div>
         </div>
       )}
